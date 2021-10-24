@@ -5,10 +5,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+
 import fi.haagahelia.exercises.Bookstore.Domain.Book;
 import fi.haagahelia.exercises.Bookstore.Domain.BookRepository;
 import fi.haagahelia.exercises.Bookstore.Domain.Category;
 import fi.haagahelia.exercises.Bookstore.Domain.CategoryRepository;
+import fi.haagahelia.exercises.Bookstore.Domain.UserRepository;
+import fi.haagahelia.exercises.Bookstore.Domain.User;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,13 +28,14 @@ public class BookstoreApplication {
 	    }
 	    
 	    @Bean
-	    public CommandLineRunner bookDemo(BookRepository repository, CategoryRepository crepository) {
+	    public CommandLineRunner bookDemo(BookRepository repository, CategoryRepository crepository, UserRepository urepository) {
 	        return (args) -> {
 	            log.info("save books!!");
 	            log.info("save category");
 	    		crepository.save(new Category("Romance"));
 	    		crepository.save(new Category("Fantasy"));
 	    		crepository.save(new Category("Business"));
+	    		crepository.save(new Category("Thriller"));
 	    		
 	    		log.info("fetch all categories");
 	    		for(Category category: crepository.findAll()) {
@@ -46,9 +50,13 @@ public class BookstoreApplication {
 	            for (Book book : repository.findAll()) {
 	                log.info(book.toString());
 	            }
-	 
+	            
+	            log.info("save users");
+	            User user1 = new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER", "user.example@gmail.com");
+	            User user2 = new User("admin", "$2a$10$e8AjiBnDUtURW/GtFc8VGerrY1p0tDYI2eP/NIPSh3.fE4rbRBh3C","ADMIN", "admin.example@gmail.com");
+	            urepository.save(user1);
+	            urepository.save(user2);
 	        };
-	    }
-
-	    } 
+	    }}
+		
 	
