@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import fi.haagahelia.exercises.Bookstore.Domain.Book;
 import fi.haagahelia.exercises.Bookstore.Domain.BookRepository;
@@ -28,6 +29,12 @@ public class BookController {
 	@GetMapping(value="/login")
 	public String loginPage(Model model) {
 		return "login";
+	}
+	
+	@GetMapping(value="/")
+	@ResponseBody
+	public String test() {
+		return "Hello World";
 	}
 	
 	@GetMapping(value="/booklist")

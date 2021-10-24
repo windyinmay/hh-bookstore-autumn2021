@@ -45,6 +45,7 @@ public class BookstoreApplication {
 	            repository.save(new Book(crepository.findByName("Romance").get(0),"Ernest Hemingway", "A farewell to Arms", "1232323-21", 1929, 12.99));
 	            repository.save(new Book(crepository.findByName("Fantasy").get(0),"George Orwell", "Animal Farm", "22122343-5", 1945, 9.99));    
 	            repository.save(new Book(crepository.findByName("Business").get(0),"Geoffrey Cain", "Samsung rising", "978-0-75355-481-4", 2020, 14.99)); 
+	            repository.save(new Book(crepository.findById(Long.valueOf(4)).get(), "Test delete", "Test delete", "Test delete", 2020, 50.9));
 	            
 	            log.info("fetch all books");
 	            for (Book book : repository.findAll()) {

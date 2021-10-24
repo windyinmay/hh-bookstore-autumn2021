@@ -10,8 +10,8 @@ import java.util.List;
 
 @RepositoryRestResource
 public interface BookRepository extends CrudRepository<Book, Long> {
-	List<Book> findByAuthor(@Param("author") String author);
-	
+	List<Book> findAllByTitle(@Param("title") String title);
+	long deleteByTitle(String title);
 	//Enabling ignoring case
 	
 }
